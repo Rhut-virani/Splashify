@@ -9,7 +9,7 @@ import Likes from './Screens/Likes';
 
 
 
-export default class App extends React.Component {
+export default class Homescreen extends React.Component {
   state = {
     index: 0,
     routes: [
