@@ -1,8 +1,10 @@
 
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, Dimensions, Image} from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Dimensions, Image, TouchableOpacity} from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-export default class Imgbox extends Component {
+class Imgbox extends React.Component {
+
 
   render() {
       let i = this.props.i;
@@ -17,15 +19,16 @@ export default class Imgbox extends Component {
 
     return (
               <View style={styles.imageBox}>
-                
-                <Image source={{uri: imgSource}} style ={{height:200, width:Dimensions.get('window').width / 2 - 16}} resizeMode="cover"/>
+                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ImageScreen')}}>
+                  <Image source={{uri: imgSource}} style ={{height:200, width:Dimensions.get('window').width / 2 - 12}} resizeMode="cover"/>
+                </TouchableOpacity>
               </View>
     );
   }
 }
 const styles = StyleSheet.create({
   imageBox:{
-    width: Dimensions.get('window').width / 2 - 16,
+    width: Dimensions.get('window').width / 2 - 12,
     height: 200,
     margin: 4,
     backgroundColor: '#171717',
@@ -33,3 +36,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }
 });
+
+export default withNavigation(Imgbox);

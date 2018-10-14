@@ -2,12 +2,22 @@ import React from 'react';
 import { View, StyleSheet, Dimensions, Text } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import { Constants } from 'expo';
-import Collections from './Screens/Collections';
-import All from './Screens/All';
-import Likes from './Screens/Likes';
+import Collections from './Collections';
+import All from './All';
+import Likes from './Likes';
+import Unsplash from 'unsplash-js/native';
 
+const unsplash = new Unsplash({
+  applicationId: "84d009e3bcbed9ee2c3befa05f05264a0ba732fecfcf18b4037dd0a68d469f7d",
+  secret: "3d52265007190eedab328d1c3a74cf1c1fa2aecc7de8332a6a7bc4c84844d74f",
+  callbackUrl: "{CALLBACK_URL}"
+});
 
-
+const authenticationUrl = unsplash.auth.getAuthenticationUrl([
+  "public",
+  "read_user",
+  "read_photos",
+]);
 
 export default class Homescreen extends React.Component {
   state = {
@@ -18,6 +28,10 @@ export default class Homescreen extends React.Component {
       { key: 'third', title: 'Likes' },
     ],
   };
+
+  static navigationOptions = {
+    header: null
+  }
 
   render() {
     
@@ -44,25 +58,25 @@ export default class Homescreen extends React.Component {
           <Text style={styles.appbartext}>Splashify</Text>
         </View>
         <TabView
-        navigationState={this.state}
-        renderScene={SceneMap({
-          first: FirstRoute,
-          second: SecondRoute,
-          third: ThirdRoute,
+            navigationState={this.state}
+            renderScene={SceneMap({
+              first: FirstRoute,
+              second: SecondRoute,
+              third: ThirdRoute,
 
-        })}
-        onIndexChange={index => this.setState({ index })}
-        initialLayout={{   height: 0,
-                           width: Dimensions.get('window').width }}
-        renderTabBar={props =>
-        <TabBar
-          style= {styles.TabBar}
-          {...props}
-          indicatorStyle={{ backgroundColor: '#CC2A2A', }}
-          pressColor ={'#6FFFE9'}
+            })}
+          onIndexChange={index => this.setState({ index })}
+          initialLayout={{   height: 0,
+                            width: Dimensions.get('window').width}}
+          renderTabBar={props =>
+            <TabBar
+              style= {styles.TabBar}
+              {...props}
+              indicatorStyle={{ backgroundColor: '#CC2A2A', }}
+              pressColor ={'#6FFFE9'}
+              />
+            }
         />
-      }
-      />
       </View>
     );
   }
@@ -78,7 +92,7 @@ const styles = StyleSheet.create({
   },
   appbar:{
     backgroundColor: '#171717',
-    height: 75,
+    height: 50,
     flexDirection: 'row',
     alignItems: 'center',
   },

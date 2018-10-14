@@ -9,11 +9,10 @@ export default class Collections extends Component {
     let imgJSX = [];
 
     for(i=1; i<15; i++){
-        imgJSX.push( <Imgbox i={i}/>);
+        imgJSX.push( <Imgbox key={i} i={i} navigation={this.props.navigation}/>);
     };
     console.log(imgJSX);
     return (
-      // <View style={ {height: 1000}}>
         <ScrollView style={{flex:1, height: Dimensions.get('window').height}}>
           <View style={styles.imageBoxContainer}>
             {imgJSX}
@@ -29,5 +28,6 @@ const styles = StyleSheet.create({
     flex: 1 ,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'center',
   },
 });
