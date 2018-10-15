@@ -7,8 +7,8 @@ export default class All extends Component {
   render() {
     let imgJSX = [];
 
-    for(i=1; i<15; i++){
-        imgJSX.push( <Imgbox key={i} i={i} navigation={this.props.navigation}/>);
+    for(i=1; i<100; i++){
+        imgJSX.push( <Imgbox key={i} i={i} navigation={this.props.navigation} all={this.props.all}/>);
     };
     // console.log(imgJSX);
     return (

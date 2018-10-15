@@ -5,7 +5,7 @@ import { Constants } from 'expo';
 import Collections from './Collections';
 import All from './All';
 import Likes from './Likes';
-import Unsplash from 'unsplash-js/native';
+import Unsplash, {toJson} from 'unsplash-js/native';
 
 const unsplash = new Unsplash({
   applicationId: "84d009e3bcbed9ee2c3befa05f05264a0ba732fecfcf18b4037dd0a68d469f7d",
@@ -19,9 +19,11 @@ const authenticationUrl = unsplash.auth.getAuthenticationUrl([
   "read_photos",
 ]);
 
+
 export default class Homescreen extends React.Component {
   state = {
     index: 0,
+    all: {},
     routes: [
       { key: 'first', title: 'Collections' },
       { key: 'second', title: 'All' },
@@ -32,17 +34,27 @@ export default class Homescreen extends React.Component {
   static navigationOptions = {
     header: null
   }
+  componentDidMount(){
+     unsplash.photos.listCuratedPhotos(2, 100, "latest")
+                    .then(toJson)
+                    .then(json => {
+                      console.log(json);
+                      this.setState({
+                        all: json
+                      })
+                    });
 
+  }
   render() {
     
     const FirstRoute = (props) => (
       <View style={ { backgroundColor: '#380C0C', height: 1000 }}>
-        <Collections index={this.state.index}/>
+        <Collections index={this.state.index} all={this.state.all}/>
       </View>
     ); 
     const SecondRoute = () => (
       <View style={{ backgroundColor: '#334e4e', height: 1000 }}>
-        <All />
+        <All all={this.state.all}/>
       </View>
     );
     const ThirdRoute = () => (

@@ -8,15 +8,13 @@ class Imgbox extends React.Component {
 
   render() {
       let i = this.props.i;
-      // const imgSource = '../assets/Wallpapers/' + i + '.jpg';
-      let imgSource1 = "https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm"
-      let imgSource2 = "=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=8aae34cf35df31a592f0bef16e6342ef"
-      let imgSource = imgSource1 + imgSource2
+      let all = this.props.all;
+      let imgSource = "https://images.unsplash.com/photo-1539576282236-40272d2dbe7e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9cee2739772eb498885974c2f2542a83&auto=format&fit=crop&w=1950&q=80";
 
-      
-
-      console.log(imgSource);
-
+      if(all[i]){
+        imgSource= all[i].urls.thumb;
+        console.log(all[i].urls.thumb);
+      }
     return (
               <View style={styles.imageBox}>
                 <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ImageScreen')}}>
