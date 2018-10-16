@@ -24,7 +24,7 @@ export default class Homescreen extends React.Component {
   state = {
     index: 0,
     all: {},
-    likes:{},
+    likes:[],
     routes: [
       { key: 'first', title: 'Collections' },
       { key: 'second', title: 'All' },
@@ -47,15 +47,22 @@ export default class Homescreen extends React.Component {
   }
 
   onLike=(all)=>{
-    console.log("something happened");
+    // console.log("something happened");
     console.log(all);
+    let newlikes = Array.from(this.state.likes);
+    newlikes.push(all);
+    console.log(newlikes);
+    this.setState({
+      likes:newlikes,
+    })
+
   }
 
   render() {
     
     const FirstRoute = (props) => (
       <View style={ { backgroundColor: '#380C0C', height: 1000 }}>
-        <Collections index={this.state.index} all={this.state.all} like={()=>{this.onLike()}}/>
+        <Collections index={this.state.index} all={this.state.all} like={this.onLike}/>
       </View>
     ); 
     const SecondRoute = () => (
@@ -126,3 +133,21 @@ const styles = StyleSheet.create({
     height: 1000,
   },
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

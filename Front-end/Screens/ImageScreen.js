@@ -15,7 +15,8 @@ export default class ImageScreen extends Component {
   render() {
     const { navigation } = this.props;
     const all = navigation.getParam('all', ' ');
-    console.log(all.urls);
+    const { params} = this.props.navigation.state;
+    // console.log(all.urls);
     let imgSource = all.urls.regular;
 
     return (
@@ -35,7 +36,7 @@ export default class ImageScreen extends Component {
         <TouchableHighlight onPress={this.onLike} style={styles.iconButton} underlayColor={'transparent'}> 
           <Icon name="wrench" size={20} color="#fff" />         
         </TouchableHighlight>
-        <TouchableHighlight onPress={this.onLike} style={styles.iconButton} underlayColor={'transparent'}>
+        <TouchableHighlight onPress={()=>{params.like(all)}} style={styles.iconButton} underlayColor={'transparent'}>
           <Icon name="heart" size={20} color="#fff"/>         
         </TouchableHighlight>
         </View>
