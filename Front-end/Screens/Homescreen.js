@@ -35,8 +35,10 @@ export default class Homescreen extends React.Component {
   static navigationOptions = {
     header: null
   }
+
+  // Getting all the initial photos from Unsplash
   componentDidMount(){
-     unsplash.photos.listCuratedPhotos(5, 100, "latest")
+     unsplash.photos.listCuratedPhotos(15, 100, "latest")
                     .then(toJson)
                     .then(json => {
                       console.log(json);
@@ -46,18 +48,24 @@ export default class Homescreen extends React.Component {
                     });
   }
 
+  // Onlike button function that added the photos liked by the user and adds it to the likes object in the state 
+  // which is used for the likes screen...
   onLike=(all)=>{
-    // console.log("something happened");
-    console.log(all);
     let newlikes = Array.from(this.state.likes);
-    newlikes.push(all);
-    console.log(newlikes);
+    newlikes.forEach((element,i,array)=>{
+      if(element.id === all.id){
+        array.splice(i,1);
+        console.log("it matches");
+      }
+      else{
+        array.push(all);
+        console.log("pushed new id");
+      }
+    })
     this.setState({
       likes:newlikes,
     })
-
   }
-
   render() {
     
     const FirstRoute = (props) => (

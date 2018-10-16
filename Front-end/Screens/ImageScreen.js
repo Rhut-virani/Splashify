@@ -15,10 +15,8 @@ export default class ImageScreen extends Component {
   render() {
     const { navigation } = this.props;
     const all = navigation.getParam('all', ' ');
-    const { params} = this.props.navigation.state;
-    // console.log(all.urls);
+    const {params} = this.props.navigation.state;
     let imgSource = all.urls.regular;
-
     return (
       <View style={styles.fullScreenImage}>
           <ImageZoom cropWidth={Dimensions.get('window').width}
