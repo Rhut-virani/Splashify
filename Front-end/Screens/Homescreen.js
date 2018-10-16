@@ -24,6 +24,7 @@ export default class Homescreen extends React.Component {
   state = {
     index: 0,
     all: {},
+    likes:{},
     routes: [
       { key: 'first', title: 'Collections' },
       { key: 'second', title: 'All' },
@@ -35,7 +36,7 @@ export default class Homescreen extends React.Component {
     header: null
   }
   componentDidMount(){
-     unsplash.photos.listCuratedPhotos(2, 100, "latest")
+     unsplash.photos.listCuratedPhotos(5, 100, "latest")
                     .then(toJson)
                     .then(json => {
                       console.log(json);
@@ -43,13 +44,18 @@ export default class Homescreen extends React.Component {
                         all: json
                       })
                     });
-
   }
+
+  onLike=(all)=>{
+    console.log("something happened");
+    console.log(all);
+  }
+
   render() {
     
     const FirstRoute = (props) => (
       <View style={ { backgroundColor: '#380C0C', height: 1000 }}>
-        <Collections index={this.state.index} all={this.state.all}/>
+        <Collections index={this.state.index} all={this.state.all} like={()=>{this.onLike()}}/>
       </View>
     ); 
     const SecondRoute = () => (
@@ -59,7 +65,7 @@ export default class Homescreen extends React.Component {
     );
     const ThirdRoute = () => (
       <View style={{ backgroundColor: '#380C0C', height: 1000 }} >
-      <Likes />
+      <Likes likes={this.state.likes}/>
       </View>
     );
 

@@ -9,7 +9,7 @@ export default class Collections extends Component {
     let imgJSX = [];
 
     for(i=1; i<15; i++){
-        imgJSX.push( <Imgbox key={i} i={i} navigation={this.props.navigation}  all={this.props.all}/>);
+        imgJSX.push( <Imgbox key={i} i={i} navigation={this.props.navigation}  all={this.props.all} like={()=>{this.props.like()}}/>);
     };
     console.log(imgJSX);
     return (

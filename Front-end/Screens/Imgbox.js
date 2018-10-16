@@ -13,11 +13,10 @@ class Imgbox extends React.Component {
 
       if(all[i]){
         imgSource= all[i].urls.thumb;
-        console.log(all[i].urls.thumb);
       }
     return (
               <View style={styles.imageBox}>
-                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ImageScreen')}}>
+                <TouchableOpacity onPress={()=>{this.props.navigation.navigate('ImageScreen' , {all : all[i] , like:this.props.like()} )}}> 
                   <Image source={{uri: imgSource}} style ={{height:200, width:Dimensions.get('window').width / 2 - 12}} resizeMode="cover"/>
                 </TouchableOpacity>
               </View>

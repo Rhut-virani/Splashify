@@ -10,11 +10,13 @@ export default class ImageScreen extends Component {
   }
 
   onLike=()=>{
-    console.log('hi');
   }
+
   render() {
-    
-    let imgSource = "https://images.unsplash.com/5/unsplash-kitsune-4.jpg?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjEyMDd9&s=ce40ce8b8ba365e5e6d06401e5485390"
+    const { navigation } = this.props;
+    const all = navigation.getParam('all', ' ');
+    console.log(all.urls);
+    let imgSource = all.urls.regular;
 
     return (
       <View style={styles.fullScreenImage}>
