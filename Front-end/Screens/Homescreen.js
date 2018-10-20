@@ -51,20 +51,20 @@ export default class Homescreen extends React.Component {
   // Onlike button function that added the photos liked by the user and adds it to the likes object in the state 
   // which is used for the likes screen...
   onLike=(all)=>{
-    // let newlikes = Array.from(this.state.likes);
-    // newlikes.forEach((element,i,array)=>{
-    //   if(element.id === all.id){
-    //     array.splice(i,1);
-    //     console.log("it matches");
-    //   }
-    //   else{
-    //     array.push(all);
-    //     console.log("pushed new id");
-    //   }
-    // })
-    // this.setState({
-    //   likes:newlikes,
-    // })
+    let newlikes = Array.from(this.state.likes);
+    newlikes.forEach((element,i,array)=>{
+      if(element.id === all.id){
+        array.splice(i,1);
+        console.log("it matches");
+      }
+      else{
+        array.push(all);
+        console.log("pushed new id");
+      }
+    })
+    this.setState({
+      likes:newlikes,
+    })
   }
   render() {
     
