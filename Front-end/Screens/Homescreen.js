@@ -68,6 +68,7 @@ export default class Homescreen extends React.Component {
   }
   render() {
     
+    // first route is the collection route wich shows all the categaries of the wallpaper 
     const FirstRoute = (props) => (
       <View style={ { backgroundColor: '#380C0C', height: 1000 }}>
         <Collections index={this.state.index} all={this.state.all} like={this.onLike}/>
